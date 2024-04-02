@@ -1,10 +1,6 @@
 import pymongo
 import os
 import datetime
-
-def get_predictions(collection):
-    return list(collection.find())
-
 import pymongo
 
 def connect_to_mongo(database_name='heart_disease_db', collection_name='patient_data'):
@@ -33,3 +29,14 @@ def insert_record(collection, record):
     """
     record['time'] = datetime.datetime.now()
     collection.insert_one(record)
+    
+def get_predictions(collection):
+    """Retrieves all records from the MongoDB collection.
+
+    Args:
+        collection (pymongo.collection.Collection): The connected MongoDB collection.
+
+    Returns:
+        list: A list of all records in the collection.
+    """
+    return list(collection.find())

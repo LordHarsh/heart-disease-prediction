@@ -10,7 +10,7 @@ import pickle
 from models.model import train_model, train_and_evaluate
 from utils.preprocessing import preprocess_data
 from utils.database import connect_to_mongo, insert_record, get_predictions
-
+import os
 templates = Jinja2Templates(directory="templates")
 
 model = None
@@ -105,4 +105,5 @@ async def history(request: Request):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
